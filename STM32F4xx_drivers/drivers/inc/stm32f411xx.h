@@ -201,6 +201,10 @@
 #define GPIOE								((GPIO_RegDef_t*) GPIOE_BASEADDR)
 #define GPIOH								((GPIO_RegDef_t*) GPIOH_BASEADDR)
 
+#define SPI1								((SPI_RegDef_t*) SPI1_BASEADDR)
+#define SPI2								((SPI_RegDef_t*) SPI2_BASEADDR)
+#define SPI3								((SPI_RegDef_t*) SPI3_BASEADDR)
+
 #define RCC									((RCC_RegDef_t*) RCC_BASEADDR)
 
 #define EXTI								((EXTI_RegDef_t*) EXTI_BASEADDR)
@@ -292,6 +296,19 @@ typedef struct{
 	uint32_t RES[2];
 	__vo uint32_t CMPCR;
 }SYSCFG_RegDef_t;
+
+typedef struct
+{
+	uint32_t SPI_CR1;
+	uint32_t SPI_CR2;
+	uint32_t SPI_SR;
+	uint32_t SPI_DR;
+	uint32_t SPI_CRCPR;
+	uint32_t SPI_RXCRCR;
+	uint32_t SPI_TXCRCR;
+	uint32_t SPI_I2SCFGR;
+	uint32_t SPI_I2SPR;
+}SPI_RegDef_t;
 //RCC_RegDef_t *pRCC = RCC;
 //GPIO_RegDef_t *pGPIOA = GPIOA;
 
