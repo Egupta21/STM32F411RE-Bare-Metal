@@ -25,18 +25,6 @@ typedef struct
 	uint8_t GPIO_SclkSpeed;
 }SPI_Config_t;
 
-typedef struct
-{
-	uint32_t SPI_CR1;
-	uint32_t SPI_CR2;
-	uint32_t SPI_SR;
-	uint32_t SPI_DR;
-	uint32_t SPI_CRCPR;
-	uint32_t SPI_RXCRCR;
-	uint32_t SPI_TXCRCR;
-	uint32_t SPI_I2SCFGR;
-	uint32_t SPI_I2SPR;
-}SPI_RegDef_t;
 
 typedef struct
 {
@@ -44,11 +32,11 @@ typedef struct
 	SPI_Config_t SPI_PinConfig;
 }SPI_Handle_t;
 
-void SPI_Init(SPI_Handle_t* pSPI_Handle);
-void SPI_DeInit(SPI_Handle_t* pSPI_Handle);
+void SPI_Init(SPI_Handle_t *pSPI_Handle);
+void SPI_DeInit(SPI_Handle_t *pSPI_Handle);
 
-uint16_t SPI_Tx(SPI_RegDef_t* SPI_RegDef, uint16_t message);
-uint16_t SPI_Rx(SPI_RegDef_t* SPI_RegDef, uint16_t message);
+uint16_t SPI_Tx(SPI_RegDef_t *SPI_RegDef, uint16_t message);
+uint16_t SPI_Rx(SPI_RegDef_t *SPI_RegDef, uint16_t message);
 
 
 #endif /* INC_STM32F411XX_SPI_DRIVER_H_ */

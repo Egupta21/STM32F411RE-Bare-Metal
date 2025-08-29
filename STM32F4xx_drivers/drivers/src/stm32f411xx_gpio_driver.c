@@ -228,14 +228,14 @@ uint16_t GPIO_ReadFromInputPin(GPIO_RegDef_t* pGPIOx, uint8_t PinNumber)
 	 */
 }
 
-uint16_t GPIO_ReadFromInputPort(GPIO_RegDef_t* pGPIOx)
+uint16_t GPIO_ReadFromInputPort(GPIO_RegDef_t *pGPIOx)
 {
 	uint16_t value;
 	value = pGPIOx->IDR;
 	return value;
 }
 
-void GPIO_WriteToOutputPin(GPIO_RegDef_t* pGPIOx, uint8_t PinNumber, uint8_t Value)
+void GPIO_WriteToOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t Value)
 {
 	if (Value == SET) // if value is high
 	{
@@ -247,12 +247,12 @@ void GPIO_WriteToOutputPin(GPIO_RegDef_t* pGPIOx, uint8_t PinNumber, uint8_t Val
 	}
 }
 
-void GPIO_WriteToOutputPort(GPIO_RegDef_t* pGPIOx, uint16_t Value)
+void GPIO_WriteToOutputPort(GPIO_RegDef_t *pGPIOx, uint16_t Value)
 {
 	pGPIOx->ODR = Value; // value can be something like 0b010011101...
 }
 
-void GPIO_ToggleOutputPin(GPIO_RegDef_t* pGPIOx, uint8_t PinNumber)
+void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
 {
 	pGPIOx->ODR ^= (1 << PinNumber);
 

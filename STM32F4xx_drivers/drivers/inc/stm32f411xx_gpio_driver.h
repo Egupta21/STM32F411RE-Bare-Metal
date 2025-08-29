@@ -86,23 +86,23 @@ typedef struct{
  * Peripheral Clock Setup
  */
 
-void GPIO_PeriClockControl(GPIO_RegDef_t* pGPIOx, uint8_t ENorDI);
+void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t ENorDI);
 
 /*
  * Init and De-Init
  */
 
-void GPIO_Init(GPIO_Handle_t* pGPIOHandle);
-void GPIO_DeInit(GPIO_RegDef_t* pGPIOx);
+void GPIO_Init(GPIO_Handle_t *pGPIOHandle);
+void GPIO_DeInit(GPIO_RegDef_t *pGPIOx);
 
 /*
  * Data read and write
  */
-uint16_t GPIO_ReadFromInputPin(GPIO_RegDef_t* pGPIOx, uint8_t PinNumber);
-uint16_t GPIO_ReadFromInputPort(GPIO_RegDef_t* pGPIOx);
-void GPIO_WriteToOutputPin(GPIO_RegDef_t* pGPIOx, uint8_t PinNumber, uint8_t Value);
-void GPIO_WriteToOutputPort(GPIO_RegDef_t* pGPIOx, uint16_t Value);
-void GPIO_ToggleOutputPin(GPIO_RegDef_t* pGPIOx, uint8_t PinNumber);
+uint16_t GPIO_ReadFromInputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);
+uint16_t GPIO_ReadFromInputPort(GPIO_RegDef_t *pGPIOx);
+void GPIO_WriteToOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t Value);
+void GPIO_WriteToOutputPort(GPIO_RegDef_t *pGPIOx, uint16_t Value);
+void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);
 
 /*
  * IRQ Configuration and ISR handling
@@ -114,6 +114,6 @@ void GPIO_PriorityConfig(uint8_t IRQNumber, uint8_t IRQPriority);
 /*
  * Misc
  */
-uint8_t GPIO_To_SysCfgEntry(GPIO_RegDef_t* pGPIOx);
+uint8_t GPIO_To_SysCfgEntry(GPIO_RegDef_t *pGPIOx);
 
 #endif /* INC_STM32F411XX_GPIO_DRIVER_H_ */

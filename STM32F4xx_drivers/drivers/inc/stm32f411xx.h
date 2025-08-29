@@ -227,6 +227,10 @@
 
 
 /////////////////////////////////////// Register Definition Structures ///////////////////////////////////////////////
+
+/*
+ * GPIO Register mapping
+ */
 typedef struct
 {
 	__vo uint32_t MODER;
@@ -240,6 +244,9 @@ typedef struct
 	__vo uint32_t AFR[2];						// AFR[0] = AFRL and AFR[1] = AFRH
 }GPIO_RegDef_t;
 
+/*
+ * RCC Register mapping
+ */
 typedef struct
 {
 	__vo uint32_t CR;
@@ -280,6 +287,10 @@ typedef struct
 	__vo uint32_t DCKCFGR;
 }RCC_RegDef_t;
 
+
+/*
+ * EXTI Register mapping
+ */
 typedef struct{
 	__vo uint32_t IMR;
 	__vo uint32_t EMR;
@@ -289,6 +300,10 @@ typedef struct{
 	__vo uint32_t PR;
 }EXTI_RegDef_t;
 
+/*
+ * SYSCFG register mapping
+ */
+
 typedef struct{
 	__vo uint32_t MEMRMP;
 	__vo uint32_t PMC;
@@ -297,6 +312,9 @@ typedef struct{
 	__vo uint32_t CMPCR;
 }SYSCFG_RegDef_t;
 
+/*
+ * SPI register mapping
+ */
 typedef struct
 {
 	uint32_t SPI_CR1;
