@@ -306,7 +306,7 @@ void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t ENorDI)
 	}
 }
 
-void GPIO_PriorityConfig(uint8_t IRQNumber, uint8_t IRQPriority)
+void GPIO_PriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority)
 {
 	// calculate ipr register to set
 	uint8_t prRegVal = IRQNumber/4;
