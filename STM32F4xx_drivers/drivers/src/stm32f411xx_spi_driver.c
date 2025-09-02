@@ -6,10 +6,50 @@
  */
 
 #include <stm32f411xx_spi_driver.h>
+
+void SPI_PeriClockControl(SPI_RegDef_t *pSPIx, uint8_t ENorDI)
+{
+	if(ENorDI == ENABLE)
+	{
+		if(pSPIx == SPI1)
+		{
+			SPI1_PCLK_EN();
+		}
+		else if(pSPIx == SPI2)
+		{
+			SPI2_PCLK_EN();
+		}
+		else if(pSPIx == SPI3)
+		{
+			SPI3_PCLK_EN();
+		}
+	}
+	else
+	{
+		if(pSPIx == SPI1)
+		{
+			SPI1_PCLK_DI();
+		}
+		else if(pSPIx == SPI2)
+		{
+			SPI2_PCLK_DI();
+		}
+		else if(pSPIx == SPI3)
+		{
+			SPI3_PCLK_DI();
+		}
+	}
+}
+
 /*
  * Setup functions
  */
-void SPI_Init(SPI_Handle_t *pSPI_Handle);
+void SPI_Init(SPI_Handle_t *pSPI_Handle)
+{
+	SPI_PeriClockControl(pSPI_Handle->pSPIx, ENABLE);
+
+
+}
 void SPI_DeInit(SPI_Handle_t *pSPI_Handle);
 
 /*
