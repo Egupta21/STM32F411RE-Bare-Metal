@@ -43,9 +43,9 @@ typedef struct
 #define SPI_DEVICE_MODE_MASTER				1
 #define SPI_DEVICE_MODE_SLAVE				0
 
-#define SPI_BUS_CONFIG_FD					1
-#define SPI_BUS_CONFIG_HD					2
-#define SPI_BUS_CONFIG_SIMPLERX_RXONLY		4
+#define SPI_BUS_CONFIG_FD					1 // Make BIDI 0 and RXONLY 0, data is sent on one line and received on another (simultaneously)
+#define SPI_BUS_CONFIG_HD					2 // Make BIDI 1 and RXONLY 0, data is sent and received on the same line (not simultaneously)
+#define SPI_BUS_CONFIG_SIMPLERX_RXONLY		3 // Make BIDI 0 and RXONLY 1 (data is only received on the line, never sent)
 
 #define SPI_SCLK_SPEED_DIV2					0
 #define SPI_SCLK_SPEED_DIV4					1
@@ -59,14 +59,14 @@ typedef struct
 #define SPI_DFF_8BITS						0
 #define SPI_DFF_16BITS						1
 
-#define SPI_CPOL_HIGH						1
 #define SPI_CPOL_LOW						0
+#define SPI_CPOL_HIGH						1
 
-#define SPI_CPHA_HIGH						1
 #define SPI_CPHA_LOW						0
+#define SPI_CPHA_HIGH						1
 
-#define SPI_SSM_EN							1
 #define SPI_SSM_DI							0
+#define SPI_SSM_EN							1
 
 void SPI_PeriClockControl(SPI_RegDef_t *pSPIx, uint8_t ENorDI);
 
