@@ -1,0 +1,26 @@
+# Eclipse / IDE metadata
+.metadata/
+.cproject
+.project
+
+# Build output
+Debug/
+Release/
+
+# Object files, dependencies, and analysis
+*.o
+*.d
+*.su
+*.cyclo
+*.map
+*.list
+
+# Executables
+*.elf
+*.bin
+*.hex
+
+# Other generated files
+*.log
+*.mk
+*.list

@@ -79,7 +79,7 @@ void SPI_DeInit(SPI_Handle_t *pSPI_Handle);
 /*
  * Data Transfer
  */
-uint16_t SPI_Tx(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t dataLen);
+void SPI_Tx(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t dataLen);
 uint16_t SPI_Rx(SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t dataLen);
 
 /*

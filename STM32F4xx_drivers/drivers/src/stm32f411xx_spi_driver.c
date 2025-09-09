@@ -71,14 +71,14 @@ void SPI_Init(SPI_Handle_t *pSPI_Handle)
 	}
 
 	// set the DFF
-	pSPI_Handle->pSPIx->SPI_CR1 << (pSPI_Handle->SPI_PinConfig.SPI_DFF << 11);
+	pSPI_Handle->pSPIx->SPI_CR1 |= (pSPI_Handle->SPI_PinConfig.SPI_DFF << 11);
 
 	// set the cpol and cpha
-	pSPI_Handle->pSPIx->SPI_CR1 << (pSPI_Handle->SPI_PinConfig.SPI_CPOL << 1);
-	pSPI_Handle->pSPIx->SPI_CR1 << (pSPI_Handle->SPI_PinConfig.SPI_CPHA << 0);
+	pSPI_Handle->pSPIx->SPI_CR1 |= (pSPI_Handle->SPI_PinConfig.SPI_CPOL << 1);
+	pSPI_Handle->pSPIx->SPI_CR1 |= (pSPI_Handle->SPI_PinConfig.SPI_CPHA << 0);
 
 	// configure the ssm
-	pSPI_Handle->pSPIx->SPI_CR1 << (pSPI_Handle->SPI_PinConfig.SPI_SSM << 9);
+	pSPI_Handle->pSPIx->SPI_CR1 |= (pSPI_Handle->SPI_PinConfig.SPI_SSM << 9);
 }
 
 void SPI_DeInit(SPI_Handle_t *pSPI_Handle);
@@ -86,7 +86,30 @@ void SPI_DeInit(SPI_Handle_t *pSPI_Handle);
 /*
  * Data Transfer
  */
-uint16_t SPI_Tx(SPI_RegDef_t *SPI_RegDef, uint8_t *pTxBuffer, uint32_t dataLen);
+void SPI_Tx(SPI_RegDef_t *SPI_RegDef, uint8_t *pTxBuffer, uint32_t dataLen)
+{
+	while(dataLen > 0)
+	{
+		while((SPI_RegDef->SPI_SR & (1 << 1)) == 0); // wait till TXE buffer is not empty
+
+		if(SPI_RegDef->SPI_CR1 & (1 << 11)) // If dff is 16 bit
+		{
+			SPI_RegDef->SPI_DR |= *((uint16_t*)pTxBuffer);
+			dataLen--;
+			dataLen--;
+			(uint16_t*)pTxBuffer++;
+		}
+		else
+		{
+			// data is 8 bit
+			SPI_RegDef->SPI_DR |= *pTxBuffer;
+			dataLen--;
+			dataLen--;
+			pTxBuffer++;
+		}
+	}
+}
+
 uint16_t SPI_Rx(SPI_RegDef_t *SPI_RegDef, uint8_t *pRxBuffer, uint32_t dataLen);
 
 /*
