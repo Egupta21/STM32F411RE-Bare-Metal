@@ -59,11 +59,11 @@ typedef struct
 #define SPI_DFF_8BITS						0
 #define SPI_DFF_16BITS						1
 
-#define SPI_CPOL_LOW						0
-#define SPI_CPOL_HIGH						1
+#define SPI_CPOL_LOW						0 // leading edge is rising (starts low, goes up), and trailing is falling
+#define SPI_CPOL_HIGH						1 // leading edge is falling (starts high, goes low), and trailing is rising
 
-#define SPI_CPHA_LOW						0
-#define SPI_CPHA_HIGH						1
+#define SPI_CPHA_LOW						0 // samples first edge
+#define SPI_CPHA_HIGH						1 // samples second edge
 
 #define SPI_SSM_DI							0
 #define SPI_SSM_EN							1
