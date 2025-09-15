@@ -97,13 +97,12 @@ void SPI_Tx(SPI_RegDef_t *SPI_RegDef, uint8_t *pTxBuffer, uint32_t dataLen)
 			SPI_RegDef->SPI_DR |= *((uint16_t*)pTxBuffer);
 			dataLen--;
 			dataLen--;
-			(uint16_t*)pTxBuffer++;
+			pTxBuffer += 2;
 		}
 		else
 		{
 			// data is 8 bit
 			SPI_RegDef->SPI_DR |= *pTxBuffer;
-			dataLen--;
 			dataLen--;
 			pTxBuffer++;
 		}
@@ -118,3 +117,28 @@ uint16_t SPI_Rx(SPI_RegDef_t *SPI_RegDef, uint8_t *pRxBuffer, uint32_t dataLen);
 void SPI_IRQInterruptConfig(uint8_t IRQNumber, uint8_t ENorDI);
 void SPI_IRQHandling(SPI_Handle_t *pSPI_Handle);
 void SPI_PriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
+
+
+void SPI_PeripheralControl(SPI_RegDef_t *pSPIx, uint8_t ENorDI)
+{
+	if(ENorDI == ENABLE)
+	{
+		pSPIx->SPI_CR1 |= (1 << SPI_CR1_SPE);
+	}
+	else
+	{
+		pSPIx->SPI_CR1 &= ~(1 << SPI_CR1_SPE);
+	}
+}
+
+void SPI_SSIConfig(SPI_RegDef_t *pSPIx, uint8_t ENorDI)
+{
+	if(ENorDI == ENABLE)
+	{
+		pSPIx->SPI_CR1 |= (1 << SPI_CR1_SSI);
+	}
+	else
+	{
+		pSPIx->SPI_CR1 &= ~(1 << SPI_CR1_SSI);
+	}
+}

@@ -86,7 +86,7 @@ void GPIO_Init(GPIO_Handle_t* pGPIOHandle)
 	if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ANALOG){
 		// non interrupt mode
 		temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
-		pGPIOHandle->pGPIOx->MODER &= ~(0x11 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); // clearing bits
+		pGPIOHandle->pGPIOx->MODER &= ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); // clearing bits
 		pGPIOHandle->pGPIOx->MODER |= temp; // setting bits
 		temp = 0;
 	}
@@ -133,13 +133,13 @@ void GPIO_Init(GPIO_Handle_t* pGPIOHandle)
 
 	// configure the speed of the gpio pin
 	temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinSpeed << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
-	pGPIOHandle->pGPIOx->OSPEEDR &= ~(0x11 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); // clearing bits
+	pGPIOHandle->pGPIOx->OSPEEDR &= ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); // clearing bits
 	pGPIOHandle->pGPIOx->OSPEEDR |= temp;
 	temp = 0;
 
 	// configure the pupd of the pin
 	temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinPuPdControl << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
-	pGPIOHandle->pGPIOx->PUPDR &= ~(0x11 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); // clearing bits
+	pGPIOHandle->pGPIOx->PUPDR &= ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); // clearing bits
 	pGPIOHandle->pGPIOx->PUPDR |= temp;
 	temp = 0;
 
@@ -151,8 +151,8 @@ void GPIO_Init(GPIO_Handle_t* pGPIOHandle)
 			pGPIOHandle->pGPIOx->AFR[0] |= temp;
 		}
 		else{
-			pGPIOHandle->pGPIOx->AFR[1] &= ~(0xF << (4 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); // clearing bits
-			pGPIOHandle->pGPIOx->AFR[1] |= temp;
+			pGPIOHandle->pGPIOx->AFR[1] &= ~(0xF << (4 * (pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber - 8))); // clearing bits
+			pGPIOHandle->pGPIOx->AFR[1] |= (pGPIOHandle->GPIO_PinConfig.GPIO_PinAltFunMode << (4 * (pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber - 8)));
 		}
 		temp = 0;
 	}
